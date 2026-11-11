@@ -21,7 +21,7 @@ import time
 from paramiko import client
 from getpass import getpass
 
-hostname = 'csr1.test.lab'
+hostname = '192.168.4.111'
 username = input("Enter Username:")
 
 if not username:
