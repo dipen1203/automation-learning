@@ -5,6 +5,7 @@ from getpass import getpass
 
 linux_cmd = ['ls -larth', 'echo $USER', 'hostname', 'sdfgh']
 IOL_cmd = ['show version']
+IOSv_cmd = ['show version']
 
 def exec_cmd_executor(hostname, commands, username, password):
     print(f"Connecting to the device {hostname}..")
