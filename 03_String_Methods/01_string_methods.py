@@ -6,11 +6,11 @@ username = 'admin1'
 # print(username.casefold())
 # print(username.center(20), "Hi")
 
-user_input = input("Enter Username:").casefold().strip().replace(" ","")
-if user_input == username:
-     print(f"Input {user_input} matched")
-else:
-     print("Not matched")
+# user_input = input("Enter Username:").casefold().strip().replace(" ","")
+# if user_input == username:
+#     print(f"Input {user_input} matched")
+# else:
+#     print("Not matched")
 ########################################################################
 
 ip = '192.168.4.111'
@@ -19,7 +19,7 @@ print(f"IP Address is: {ip}\nDevice type is: {device}")
 
 ########################################################
 '''find'''
-print(username.index('1'))
+# print(username.index('1')) # this will count admin1 with a is 0, d is 1, m is 2, i is 3, n is 4, 1 is 5 so answer is 5 of the value of 1 in the string
 
 ##############################################################
 '''is decimal'''
@@ -28,7 +28,7 @@ print(username.index('1'))
 # print(a_number.isdigit())
 # print(a_number.isdecimal())
 
-b_letter = 'A'
+# b_letter = 'A'
 # print(b_letter.isascii())
 ##########################################################
 '''is identifier  a-z, A-Z, 0-9, _ : should not start with number'''
@@ -70,12 +70,12 @@ print(message.replace("there", "world"))
 '''split'''
 users = 'user1, user2, user3'
 user_list = users.split(', ')
-# print(user_list)
-# for user in user_list:
-#     print(f"Username is: {user}")
+print(user_list)
+for user in user_list:
+    print(f"Username is: {user}")
 ##########################################################
 '''splitlines'''
-print("user1\nuser2\nuser3".splitlines())
+# print("user1\nuser2\nuser3".splitlines())
 
 ##########################################################
 '''translate'''
