@@ -23,7 +23,7 @@ for file in files:
                 print(file_data.read())
 
 #########################################################################################
-
+os.chdir(Path(__file__).resolve().parent)
 file1 = open('config1.txt', 'r')
 print(dir(file1))
 print(file1.read())
@@ -52,5 +52,6 @@ for command in commands:
 # with open('new_file.pdf', 'wb') as dest_file:
 #     dest_file.write(s)
 
-
-os.remove('new_file.pdf')
+Path('test_file_new.pdf').touch() # create a new file name test.file.pdf
+Path('test_file.pdf').touch()
+os.remove('test_file_new.pdf') #replace the test_file_new.pdf name with with any name exist in the location if you want to delete
