@@ -1,0 +1,165 @@
+Building configuration...
+
+Current configuration : 3553 bytes
+!
+! Last configuration change at 16:21:36 UTC Thu Nov 19 2026 by admin
+!
+version 17.18
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname R02
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name test.com
+ip cef
+login on-success log
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2039809
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2039809
+ revocation-check none
+ rsakeypair TP-self-signed-2039809
+ hash sha512
+!
+!
+crypto pki certificate chain TP-self-signed-2039809
+ certificate self-signed 01
+  3082032A 30820212 A0030201 02020101 300D0609 2A864886 F70D0101 0D050030 
+  2E312C30 2A060355 04030C23 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32303339 38303930 1E170D32 36313131 39313530 3531315A 
+  170D3336 31313138 31353035 31315A30 2E312C30 2A060355 04030C23 494F532D 
+  53656C66 2D536967 6E65642D 43657274 69666963 6174652D 32303339 38303930 
+  82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02 82010100 
+  8F536E07 686FDD86 9C24D9FD 56B2C101 AB51CE1A C478B009 FDFF3169 9E28D877 
+  1B73EBC0 3B569A6B 323E6D64 ED4832C8 16989C43 64DFD132 3D625B66 5EED3F87 
+  064E9193 2F2B90BD E663FBE4 E736E9DF 8257A187 CBFA3CAE 54080702 BF7ED1C3 
+  FA98EB05 8E37B592 68C3FB51 6E28E8B9 3A772A5E C34CABE2 643DB2A8 5A1F43E4 
+  3795AE19 4FBEB32B 6BD45065 DD6FB095 E97585CF 4D836780 F7ED12F0 EC902801 
+  FF6860FC EED551A0 B138AA8E 50E3E98F 5E9B7729 9C04F2E1 ADA06E08 AAB7EB9C 
+  9154781C 9FE8C956 24297B99 F48BA894 F38C01E8 52826426 6A9B15E2 275F01DA 
+  66EDBCAF B33FD1A1 C5E07E53 FD834F54 FA431D09 312E5506 9FCE6D80 8E8E8419 
+  02030100 01A35330 51301D06 03551D0E 04160414 D68AD01D 91FC0586 93229E3B 
+  E0EF7DA1 9E741EBC 301F0603 551D2304 18301680 14D68AD0 1D91FC05 8693229E 
+  3BE0EF7D A19E741E BC300F06 03551D13 0101FF04 05300301 01FF300D 06092A86 
+  4886F70D 01010D05 00038201 0100461B 5F2DC3FC 9B795321 05708F1A 3957159C 
+  22BAEB58 68C42867 E5D9C0FB A069482F 10FAC61F 474821AB 1A662946 619426E6 
+  FFC1502C 0898E4DB DE1E7DCB 9B7F3B5D ACD68B17 D02ABD48 A4B00493 152D5769 
+  9400503A BC0F4EF6 1A9B443F 8FF0683E BBE5029D 0669A1DA CFDD08E7 AC4263F5 
+  E7A3F473 F0640235 4896A6D2 D36B70FE B2D0FDF4 F616571A C65731C8 A152AB35 
+  E45801E2 DB2E86CB 5941DF47 1B35A503 748C453D 6EAF20BC 4E840B79 0BC0BA01 
+  C0DD39A3 BE13FF98 9C9D1BE7 3A05392A F22E32D4 8C1B3018 3701EAEB 7C5978E6 
+  4F26BED8 61DABACF BE27DF41 042B4720 818BE28B 203CF86D 56D0E8AE D3B555C6 
+  C0DB9D89 CCDA1C2A FAD1383C 15E4
+  	quit
+!
+!
+memory free low-watermark processor 79866
+!
+!
+spanning-tree mode rapid-pvst
+!
+!
+username admin privilege 15 secret 9 $9$qGQKI32sokEKTk$58rtWovglKelwwlQwIsPjoUu.CyRqkuVOXe0N5cOaBY
+username admin2 privilege 15
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1001
+ ip address 10.1.1.100 255.255.255.0
+!
+interface Loopback1002
+ ip address 20.1.1.100 255.255.255.0
+!
+interface Ethernet0/0
+ ip address 192.168.4.121 255.255.255.0
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+ip forward-protocol nd
+!
+!
+ip http server
+ip http secure-server
+ip ssh bulk-mode 131072
+ip ssh pubkey-chain
+ username admin2
+  key-hash ssh-ed25519 5E0C58D7B526A0494E7119CE6EF5FD56 dipin@dipin-UbuntuDev
+no logging btrace
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+ activation-character 13
+ logging synchronous
+line aux 0
+ activation-character 13
+line vty 0 4
+ activation-character 13
+ login local
+ transport input ssh
+!
+!
+!
+!
+end
+
