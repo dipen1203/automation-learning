@@ -1,12 +1,17 @@
 import sys
 import time
 import traceback
+from zipfile import Path
 from paramiko import client, ssh_exception
+from pathlib import Path
 from getpass import getpass
 import socket
 import datetime
 
-with open('show_commands.txt', 'r') as conf_file:
+script_dir = Path(__file__).parent
+file_path = script_dir / "show_commands.txt"
+
+with open(file_path, 'r') as conf_file:
     new_cmd = conf_file.readlines()
 print(new_cmd)
 
@@ -26,7 +31,10 @@ def cisco_cmd_executor(hostname, commands, username, password):
 
         for cmd in enumerate(commands, start=1):
             file_name = f"{str(now).replace(' ', ':')}_{str(cmd[0]).zfill(2)}_{cmd[1].replace(' ', '_').strip()}.txt"
-            with open(file_name, 'w') as cmd_data:
+
+            output_file = script_dir / file_name # this will create a file in the same directory as the script with Router outputs
+
+            with open(output_file, 'w') as cmd_data:
                 device_access.send(f"{cmd[1]}")
                 time.sleep(1)
                 output = device_access.recv(65535)
@@ -45,5 +53,6 @@ def cisco_cmd_executor(hostname, commands, username, password):
         print(sys.exc_info())
         # traceback.print_exception(*sys.exc_info())
 
-cisco_cmd_executor('csr1.test.lab', new_cmd, 'admin', 'admin')
+cisco_cmd_executor('192.168.4.111', new_cmd, 'admin', 'admin')
+cisco_cmd_executor('192.168.4.121', new_cmd, 'admin', 'admin')
 
