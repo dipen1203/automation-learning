@@ -1,16 +1,19 @@
+import os
 import sys
 import time
+import logging
 import traceback
 
 import paramiko.util
 from paramiko import client, ssh_exception, Ed25519Key
 from getpass import getpass
 import socket
-paramiko.util.log_to_file("paramiko.log", level="DEBUG")
+script_dir = os.path.dirname(os.path.abspath(__file__))
+paramiko.util.log_to_file(os.path.join(script_dir, "paramiko.log"), level="DEBUG")
 
-username = 'admin'
+username = 'admin2'
 IOL_cmd = ['config t', 'int lo1001', 'ip address 1.1.1.1 255.255.255.0', 'end']
-IOSv_cmd = ['config t', 'int lo1001', 'ip address 1.1.1.1 255.255.255.0', 'end']
+#IOSv_cmd = ['config t', 'int lo1001', 'ip address 1.1.1.1 255.255.255.0', 'end']
 key_file = Ed25519Key.from_private_key_file(filename='/home/dipin/.ssh/id_ed25519')
 def cisco_cmd_executor(hostname, commands):
     try:
@@ -51,4 +54,4 @@ def cisco_cmd_executor(hostname, commands):
 
 cisco_cmd_executor('192.168.4.111', IOL_cmd)
 cisco_cmd_executor('192.168.4.121', IOL_cmd)
-cisco_cmd_executor('192.168.4.131', IOSv_cmd)
+# cisco_cmd_executor('192.168.4.131', IOSv_cmd)
