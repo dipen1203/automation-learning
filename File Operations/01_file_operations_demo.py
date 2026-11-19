@@ -1,7 +1,7 @@
 import os
 
 # print(os.getcwd())
-# os.chdir('../Paramiko')
+# os.chdir('../01_Paramiko')
 # print(os.getcwd())
 # print(len(os.listdir()))
 # print(f"Current working directory is {os.getcwd()}")
@@ -50,14 +50,3 @@ for command in commands:
 
 
 os.remove('new_file.pdf')
-
-
-
-
-
-
-
-
-
-
-
