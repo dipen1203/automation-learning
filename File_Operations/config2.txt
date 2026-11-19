@@ -1,4 +1,5 @@
 testdata
+show ver
 testdata2
 testdata3
 testdata4
