@@ -75,7 +75,7 @@ for user in user_list:
     print(f"Username is: {user}")
 ##########################################################
 '''splitlines'''
-# print("user1\nuser2\nuser3".splitlines())
+print("user1\nuser2\nuser3".splitlines())
 
 ##########################################################
 '''translate'''
@@ -84,7 +84,7 @@ print("Hey there..".translate(trans))
 
 ##########################################################
 '''zfill'''
-print('abc'.zfill(5))
+print('abc'.zfill(8))
 
 
 
