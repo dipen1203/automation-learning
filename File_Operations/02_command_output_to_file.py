@@ -3,12 +3,16 @@ import time
 import traceback
 from paramiko import client, ssh_exception
 from getpass import getpass
+from pathlib import Path
 import socket
 import datetime
 
 username = 'admin'
 password = 'admin'
-csr_cmd = ['show run']
+IOL_cmd = ['show run']
+
+script_dir = Path(__file__).resolve().parent
+output_file = script_dir / "output1.txt"
 
 def cisco_cmd_executor(hostname, commands):
     try:
@@ -23,13 +27,17 @@ def cisco_cmd_executor(hostname, commands):
         print(f"Connected to the device {hostname}")
         device_access = ssh_client.invoke_shell()
         device_access.send("terminal len 0\n")
-        with open(current_conf_file, 'w') as cmd_data:
+        time.sleep(1)
+
+        with open(output_file, 'w') as cmd_data:
+        # with open(current_conf_file, 'w') as cmd_data:
             for cmd in commands:
                 device_access.send(f"{cmd}\n")
                 time.sleep(1)
                 output = device_access.recv(65535)
                 cmd_data.write(output.decode())
                 print(output.decode(), end='')
+        ssh_client.close()
 
     except ssh_exception.NoValidConnectionsError:
         print("SSH Port not reachable")
@@ -43,5 +51,6 @@ def cisco_cmd_executor(hostname, commands):
         print(sys.exc_info())
         # traceback.print_exception(*sys.exc_info())
 
-cisco_cmd_executor('csr1.test.lab', csr_cmd)
+cisco_cmd_executor('192.168.4.111', IOL_cmd)
+cisco_cmd_executor('192.168.4.121', IOL_cmd)
 
